@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block left_content %}
+    <div class="title">
+        <h2><a  rel="bookmark" title="{{ article.title }}">{{ article.title }}</a></h2>
+        <div class="postmeta">
+            <!--<span class="postmeta_author">{{ article.user.username }}</span>    -->
+          <span class="postmeta_category"><a href="{%  url 'guide' %}?category={{ article.category }}" rel="category">{{ article.category.name }}</a></span>
+          <span class="postmeta_time">{{ article.date_publish | date:'Y-m-d' }}</span>
+        </div>
+    </div>
+        <div class="entry">
+          {{ article.content | safe }}
+        </div>
+{% endblock %}

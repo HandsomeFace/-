@@ -1,0 +1,101 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>凛冬将至</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
+{% block custom_css %}{% endblock %}
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sliders.js' %}"></script>
+<!--[if lt IE 9]>
+<script src="{% static "js/modernizr.js" %}"></script>
+<![endif]-->
+    {% block custom_js %}{% endblock %}
+</head>
+<body>
+<header>
+  <div class="logo">
+      <h1>{{ SITE_NAME }}</h1>
+      <p>{{ SITE_DESC }}</p>
+  </div>
+  <nav id="topnav" class="f_r">
+    <ul>
+      <a href="/">丘</a>
+        {% for i in category_list %}
+      <a href='{%  url 'guide' %}?category={{ i }}'>{{ i.name }}</a>
+        {% endfor %}
+    </ul>
+    <script src="{% static "js/nav.js" %}"></script>
+  </nav>
+</header>
+<article>
+  <div class="l_box f_l">
+    {% block left_content %}
+    {% endblock %}
+  </div>
+  <div class="r_box f_r">
+    <div class="tit01">
+      <div class="gzwm">
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp功</h3>
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp能</h3>
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp传</h3>
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp送</h3>
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp门</h3>
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp正</h3>
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp在</h3>
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp启</h3>
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp动</h3>
+          <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp。</h3>
+      </div>
+    </div>
+    <!--tit01 end-->
+    <div class="moreSelect" id="lp_right_select">
+      <script>
+window.onload = function ()
+{
+  var oLi = document.getElementById("tab").getElementsByTagName("li");
+  var oUl = document.getElementById("ms-main").getElementsByTagName("div");
+
+  for(var i = 0; i < oLi.length; i++)
+  {
+    oLi[i].index = i;
+    oLi[i].onmouseover = function ()
+    {
+      for(var n = 0; n < oLi.length; n++) oLi[n].className="";
+      this.className = "cur";
+      for(var n = 0; n < oUl.length; n++) oUl[n].style.display = "none";
+      oUl[this.index].style.display = "block"
+    }
+  }
+}
+</script>
+
+    <!--切换卡 moreSelect end -->
+
+
+    <div class="tuwen">
+      <h3>文章归档</h3>
+      <ul>
+          {% for archive in archive_list %}
+        <li>
+          <p><span class="tutime font-size-18"><a href='{%  url 'archive' %}?year={{ archive|slice:':4'}}&month={{ archive|slice:'5:7'}}'>{{ archive }}</a></span></p>
+        </li>
+          {% endfor %}
+      </ul>
+    </div>
+    <div class="links">
+      <h3>相关链接</h3>
+      <ul>
+        <p><a href="https://user.qzone.qq.com/737377809/infocenter" target="_blank">需要挖掘机手，请联系我！！</a></p>
+
+      </ul>
+    </div>
+  </div>
+  <!--r_box end -->
+</article>
+</body>
+</html>
